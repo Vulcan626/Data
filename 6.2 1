@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+#define N 100
+void swap(int P1,int P2,int *a)
+{
+    int temp;
+    temp=a[P1-1];
+    a[P1-1]=a[P2-1];
+    a[P2-1]=temp;
+}
+int main()
+{
+    int n,p1,p2;
+    int a[N];
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    cin>>p1>>p2;
+    swap(p1,p2,a);
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]<<" ";
+    }
+    return 0;
+}
