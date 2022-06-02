@@ -26,17 +26,17 @@ int main()
         }
         else
         {
-            flag = 0;
+            flag=0;
             break;
         }
     }
     if(flag)
     {
-        cout << "True";
+        cout<<"True";
     }
     else
     {
-        cout << "False";
+        cout<<"False";
     }
     return 0;
 }
