@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-char ch[27] = "aaaaaaaaaaaaaaaaaaaaaaaaaa";
+char ch[27]="aaaaaaaaaaaaaaaaaaaaaaaaaa";
 void dic(int n,int m)
 {
 	int i,j;
