@@ -1,8 +1,3 @@
-//设栈S的初始状态为空，元素a，b，c，d，e，f，g依次入栈，出栈顺序为b，d，c，f，e，a，g那么栈容量至少应该是3。如果任意给你一个出栈序列，你能编程判断相应的栈容量至少是多少吗？
-//元素a，b，c，d，e，f，g依次入栈情况下的一种出栈序列。
-//对应出栈序列的栈容量至少是多少。
-//b d c f e a g
-//3
 #include<iostream>
 #include<stack>
 using namespace std;
