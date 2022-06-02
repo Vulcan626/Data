@@ -1,0 +1,51 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+int maxstack=0;
+void ismax(int t)
+{
+    if(t>maxstack)
+        maxstack=t;
+}
+int main()
+{
+    stack<char>s;
+    int temp=0;
+    char ch0='a',ch1[8];
+        for (int i=0;i<7;i++)
+            cin>>ch1[i];
+    int i=0,flag=1;
+        while(i<7)
+        {
+            if(ch0==ch1[i])
+            {
+                s.push(ch0);
+                temp++;
+                ismax(temp);
+                s.pop();
+                temp--;
+                ch0++;
+                i++;
+            }
+            else if(!s.empty()&&s.top()==ch1[i])
+            {
+                s.pop();
+                temp--;
+                i++;
+            }
+            else if(ch0<='g')
+            {
+                s.push(ch0);
+                temp++;
+                ismax(temp);
+                ch0++;
+            }
+            else
+            {
+                flag=0;
+                break;
+            }
+    }
+    cout<<maxstack<<endl;
+    return 0;
+}
