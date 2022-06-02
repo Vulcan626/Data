@@ -1,90 +1,28 @@
 #include<iostream>
-#include<string.h>
-#include<assert.h>
+#include<stack>
 using namespace std;
-const int stackIncreament = 20;
-template<class T>
-class stack
-{
-private:
-    T* elements;
-    int top;
-    int maxSize;
-    void overflowProcess()
-    {
-        T* arr=new T[maxSize+stackIncreament];
-        for(int i=0; i<=top; i++)
-            arr[i]=elements[i];
-        delete[]elements;
-        elements=arr;
-        maxSize+=stackIncreament;
-    }
-public:
-    stack(int sz=50):top(-1),maxSize(sz)
-    {
-        elements=new T[maxSize];
-        assert(elements!=NULL);
-    }
-    ~stack()
-    {
-        delete[]elements;
-    }
-    bool IsFull()const
-    { return (top==maxSize-1)?true:false; }
-    bool IsEmpty()const
-    { return (top==-1)?true:false; }
-    void Push(const T&x)
-    {
-        if(IsFull())
-            overflowProcess();
-        elements[++top]=x;
-    }
-    bool Pop()
-    {
-        if(IsEmpty())
-            return false;
-        else
-        {
-            top--;
-            return true;
-        }
-    }
-    T getTop()
-    {
-        if(IsEmpty()) return 0;
-        return elements[top];
-        
-    }
-    int getSize()const
-    {return top+1;}
-    void MakeEmpty()
-    {
-        top=-1;
-    }
-};
 int main()
 {
-    char ch='a',str[8];
-    for(int i=0;i<7;i++)
-        cin>>str[i];
     stack<char>s;
-    int num=0,flag=1;
-    while (num<7)
+    char ch0='a',ch1[8];
+    for(int i=0;i<7;i++)
+        cin>>ch1[i];
+    int i=0,flag=1;
+    while(i<7)
     {
-        if(ch== str[num])
+        if(ch0==ch1[i])
         {
-            ch++;
-            num++;
+            ch0++;i++;
         }
-        else if(!s.IsEmpty()&&s.getTop()==str[num])
+        else if(!s.empty()&&s.top()==ch1[i])
         {
-            s.Pop();
-            num++;
+            s.pop();
+            i++;
         }
-        else if(ch<='g')
+        else if(ch0<='g')
         {
-            s.Push(ch);
-            ch++;
+            s.push(ch0);
+            ch0++;
         }
         else
         {
@@ -93,8 +31,12 @@ int main()
         }
     }
     if(flag)
+    {
         cout<<"True";
+    }
     else
+    {
         cout<<"False";
+    }
     return 0;
 }
