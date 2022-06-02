@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node *head,*next;
+};
+Node* Creatlist(int n)
+{
+    int i,j,a,b;
+    Node*p[100];
+    for(i=0;i<n;i++)
+    {
+       p[i]=new Node;
+       p[i]->data=i+1;
+    }
+    for(j=0;j<n;j++)
+    {
+        cin>>a>>b;
+        for(i=0;i<n;i++)
+        {
+            if(a==i+1)
+            {
+                p[j]->next=p[i];
+                break;
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            if(b==i+1)
+            {
+                p[j]->head=p[i];
+                break;
+            }
+        }
+    }
+    return p[0];
+}
+int main()
+{
+    int k,i,n;
+    cin>>n;
+    Node*first=NULL,*temp=NULL;
+    first=Creatlist(n);
+    temp=first;
+    cin>>k;
+    for(i=0;i<n;i++)
+    {
+       if(temp->data==k) break;
+       temp=temp->next;
+    }
+    for(i=0;i<n;i++)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    return 0;
+}
