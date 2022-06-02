@@ -1,0 +1,35 @@
+#include<iostream>
+#include<queue>
+using namespace std;
+int main()
+{
+    int n,num,p,temp;
+    cin>>n;
+    queue<int>q1;
+    queue<int>q2;
+    for(int i=0;i<n;i++)
+    {
+        cin>>num;
+        q1.push(num);
+    }
+    cin>>p;
+    for(int j=0;j<p-1;j++)
+    {
+        temp=q1.front();
+        q2.push(temp);
+        q1.pop();
+    }
+    q1.pop();
+    for(int j=0;j<n-p;j++)
+    {
+        temp=q1.front();
+        q2.push(temp);
+        q1.pop();
+    }
+    for(int i=0;i<n-1;i++)
+    {
+        cout<<q2.front()<<" ";
+        q2.pop();
+    }
+    return 0;
+}
