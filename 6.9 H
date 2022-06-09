@@ -1,0 +1,16 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int TreeDepth(int num)
+    {
+    return log(num+1)/log(2);
+    }
+int main()
+{
+    int num;
+    char ch[27];
+    cin>>num;
+    cin>>ch;
+    cout<<TreeDepth(num);
+    return 0;
+}
