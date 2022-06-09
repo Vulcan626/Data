@@ -1,1 +1,39 @@
+#include<iostream>
+using namespace std;
+char TreeNode[27];
+void vlr(int n)
+{
+    if(TreeNode[n-1])
+    {
+        cout<<TreeNode[n-1];
+        vlr(2*n);
+        vlr(2*n+1);
+    }
+}
+void lvr(int n)
+{
+    if(TreeNode[n-1])
+    {
+        lvr(2*n);
+        cout<<TreeNode[n-1];
+        lvr(2*n+1);
+    }
+}
+void lrv(int n)
+{
+    if(TreeNode[n-1])
+    {
+        lrv(2*n);
+        lrv(2*n+1);
+        cout<<TreeNode[n-1];
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+        cin>>TreeNode[i];
+    lrv(1);
+}
 
