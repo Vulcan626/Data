@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int n,root=1;
+struct node{
+    int l,r;
+}tree[200];
+void pre(int p)
+{
+    if(p==-1) return;
+    cout<<p<<" ";
+    pre(tree[p].l);
+    pre(tree[p].r);
+}
+void mid(int p)
+{
+    if(p==-1) return;
+    mid(tree[p].l);
+    cout<<p<<" ";
+    mid(tree[p].r);
+}
+void last(int p)
+{
+    if(p==-1) return;
+    last(tree[p].l);
+    last(tree[p].r);
+    cout<<p<<" ";
+}
+int main(){
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        int a,le,ri;
+        cin>>a>>le>>ri;
+        tree[a].l=le;
+        tree[a].r=ri;
+    }
+    for(int i=1;i<=n;i++){
+         for(int j=1;j<=n;j++)
+         if(tree[j].l==root||tree[j].r==root)
+               root=j;
+}
+    last(root);
+    return 0;
+}
