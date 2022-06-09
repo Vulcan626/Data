@@ -1,0 +1,33 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+string s;
+void fbi(int l,int r)
+{
+    int i,cnt1,cnt2;
+    if(l==r)
+    {
+        if(s[l]=='0') cout<<"B";
+        else cout<<"I";
+    }
+    else
+    {
+        int mid=(r-l-1)/2;
+        fbi(l,l+mid);
+        fbi(r-mid,r);
+        cnt1=0;cnt2=0;
+        for(i=l;i<=r;i++)
+            if(s[i]=='0') cnt1++;
+            else  cnt2++;
+        if(cnt1==0) cout<<"I";
+        else if(cnt2==0) cout<<"B";
+        else cout<<"F";
+    }
+}
+int main(){
+    int num;
+    cin>>num;
+    cin>>s;
+    fbi(0,s.length()-1);
+    return 0;
+}
