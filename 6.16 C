@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+        int n=0;
+        cin>>n;
+        int MinHeap[101];
+        for(int i=0;i<n;i++)
+        {
+            int m=0;
+            cin>>m;
+            MinHeap[i]=m;
+        }
+        for(int i=n;i<101;i++)
+        {
+            MinHeap[i]=99999;
+        }
+        for(int i = n-1; i >= 0; i--)
+        {
+            int pos=i;
+            if((pos*2+2)<n)
+            {
+                while(MinHeap[pos*2+1]<MinHeap[pos]||MinHeap[pos * 2 + 2]<MinHeap[pos])
+                {
+                    if(MinHeap[pos * 2 + 1]<=MinHeap[pos * 2 + 2])
+                    {
+                        int temp=MinHeap[pos];
+                        MinHeap[pos]=MinHeap[pos*2+1];
+                        MinHeap[pos*2+1]=temp;
+                        pos=pos*2+1;
+                    }
+                    else
+                    {
+                        int temp=MinHeap[pos];
+                        MinHeap[pos]=MinHeap[pos*2+2];
+                        MinHeap[pos*2+2]=temp;
+                        pos=pos*2+2;
+                    }
+                }
+            }
+            else if((pos * 2 + 1) < n)
+            {
+                if(MinHeap[pos*2+1]<MinHeap[pos])
+                {
+                    int temp=MinHeap[pos];
+                        MinHeap[pos]=MinHeap[pos*2+1];
+                        MinHeap[pos*2+1]=temp;
+                }
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(i!=n-1) cout<<MinHeap[i]<<" ";
+            else cout<<MinHeap[i]<<endl;
+        }
+    return 0;
+}
