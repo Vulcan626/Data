@@ -1,0 +1,66 @@
+#include <iostream>
+#define Max 103
+using namespace std;
+struct AMGraph{
+    int ves[Max];
+    int arcs[Max][Max];
+    int vexnum, arcnum;
+};
+struct Gedge{
+    int adjvex;
+    int lowcost;
+};
+Gedge closedge[Max];
+int sum=0;
+void putin(AMGraph &G)
+{
+    int u,v,w;
+    cin>>G.vexnum>>G.arcnum;
+    for (int i=0;i<=G.vexnum;i++)
+    {
+        for (int j=0;j<=G.vexnum;j++)
+            G.arcs[i][j]=0xcffffff;
+    }
+    for(int i=0;i<G.arcnum;i++)
+    {
+        cin>>u>>v>>w;
+        G.arcs[u][v]=G.arcs[v][u]=w;
+    }
+}
+
+void Prim(AMGraph &G)
+{
+    for (int i=0;i<G.vexnum;i++)
+        if (i!=0) closedge[i]={0,G.arcs[0][i]};
+    closedge[0].lowcost=0;
+    for(int i=1;i<G.vexnum; i++)
+    {
+        int k=0,min=0xcffffff;
+        for(int j=0;j<=G.vexnum;j++)
+        {
+            if(closedge[j].lowcost<min&&closedge[j].lowcost!= 0) {
+                min = closedge[j].lowcost;
+                k = j;
+            }
+        }
+        sum+=closedge[k].lowcost;
+        closedge[k].lowcost = 0;
+        for (int j=0;j<=G.vexnum;j++)
+        {
+            if (G.arcs[k][j]<closedge[j].lowcost)
+            {
+                closedge[j].adjvex=k;
+                closedge[j].lowcost=G.arcs[k][j];
+            }
+                
+        }
+    }
+}
+int main()
+{
+    AMGraph G;
+    putin(G);
+    Prim(G);
+    cout<<sum<<endl;
+    return 0;
+}
