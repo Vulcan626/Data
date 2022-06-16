@@ -1,7 +1,7 @@
-echo "# Data-Structure" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Vulcan626/Data-Structure.git
-git push -u origin main
+//
+//  
+//  playgroundcpp
+//
+//  Created by Vulcan626 on 2022
+//
+//
