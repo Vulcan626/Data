@@ -1,48 +1,30 @@
-#include <iostream>
-#include <cstring>
+#include<iostream>
 using namespace std;
-void judge(int a[],int n){
-    if(n%2==0){
-        if(a[n/2]>a[n])
-               cout<<"False"<<endl;
-        for(int i=n/2-1;i>=0;i--)
-            if(a[i]>a[2*i]||a[i]>a[2*i+1])
-                cout<<"False"<<endl;
-    }
-    else{
-        for(int i=n/2;i>=0;i--){
-            if(a[i]>a[2*i]||a[i]>a[2*i+1])
-                cout<<"False"<<endl;
-        }
-    }
-    cout<<"True"<<endl;
-}
+int n;
 int main()
 {
-    int n,j=0,m=0;
-    int len=0;
     cin>>n;
-    char ch[200];
-    int xulie[101]={0};
     for(int i=0;i<n;i++)
     {
-        cin>>ch;
-        len=0;
-        xulie[101]={0};
-        while(ch[j]!='\n')
+        char s;
+        bool f=1;
+        int heap[101];
+        for(int j=1;1;j++)
         {
-            if(ch[j]==' ')
+            scanf("%d",&heap[j]);
+            if(j!=1&&heap[j]<heap[j/2])
             {
-                len++;
-                m=0;
+                f=0;
+                break;
             }
-            else
+            if(cin.get()=='\n')
             {
-                xulie[len]=xulie[len]*10^m+(ch[j]-48);
-                m++;
+                s=cin.get();
+                break;
             }
         }
-        judge(xulie,len);
-    }
+            if(f) cout<<"True"<<endl;
+            else cout<<"False"<<endl;
+        }
     return 0;
 }
