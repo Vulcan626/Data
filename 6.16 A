@@ -1,41 +1,64 @@
-#include <iostream>
-#include <queue>
+#include<queue>
+#include<iostream>
 using namespace std;
-int n,root=1;
-struct treenode{
-    int l,r;
-}btree[200];
-void levelorder(int p)
+struct tnode
 {
-    if(p==-1) return;
-    deque<int>lqueue;
-    lqueue.push_back(p);//根结点入队
-    while (!lqueue.empty())//当整个队列为空的时候，遍历就完成了
+    int v;
+    tnode* l;
+    tnode* r;
+    tnode* f;
+};
+void LevelOrder(tnode* ptr)
+{
+    if (ptr == NULL)
     {
-        cout<<lqueue.front()<<" ";//返回队列中第一个结点
-        lqueue.pop_front();//第一个结点出队
-        //cout<<p<<" ";//访问出队的结点的数据
-        //出队结点的左右结点入队
-        if(btree[p].l)
-            lqueue.push_back(btree[p].l);
-        if(btree[p].r)
-            lqueue.push_back(btree[p].l);
+        return;
     }
+    queue<tnode*> que;
+    que.push(ptr);
+    while (!que.empty())
+    {
+        ptr = que.front();
+        que.pop();
+        cout<<ptr->v<<" ";
+        if (ptr->l != NULL)
+        {
+            que.push(ptr->l);
+        }
+        if (ptr->r != NULL)
+        {
+            que.push(ptr->r);
+        }
+    }
+    cout << endl;
 }
-int main(){
+int main()
+{
+    int n;
     cin>>n;
-    for(int i=1;i<=n;i++){
-        int a,le,ri;
-        cin>>a>>le>>ri;
-        btree[a].l=le;
-        btree[a].r=ri;
+    int a[n],b[n],c[n];
+    tnode x[1001];
+    for(int i=1;i<=n;i++)
+    {
+        cin>>a[i]>>b[i]>>c[i];
+        x[a[i]].v=a[i];
+        if(b[i]!=-1)
+        {
+            x[a[i]].l=&x[b[i]];
+            x[b[i]].f=&x[a[i]];
+        }
+            if(c[i]!=-1)
+        {
+            x[a[i]].r=&x[c[i]];
+            x[c[i]].f=&x[a[i]];
+        }
     }
     for(int i=1;i<=n;i++)
     {
-         for(int j=1;j<=n;j++)
-         if(btree[j].l==root||btree[j].r==root)
-               root=j;
+        if(x[i].f==NULL)
+        {
+            LevelOrder(&x[i]);
+            break;
+        }
     }
-    levelorder(root);
-    return 0;
 }
