@@ -1,0 +1,48 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int bstree[1001]={0};
+int a[1001];
+void BSTcreat(int x)
+{
+    int n=1;
+    while(bstree[n]!=0)
+    {
+        if(bstree[n]>x) n=n*2;
+        else n=n*2+1;
+    }
+    bstree[n]=x;
+}
+int BSTsearch(int key,int num)
+{
+    int n=1;
+    int count=0;
+    while(bstree[n]!=key||bstree[n]==0)
+    {
+        count++;
+        if(bstree[n]>key)
+        {
+            n=n*2;
+        }
+        else{
+            n=n*2+1;
+        }
+    }
+    if(bstree[n]==0) return -1;
+    else return count+1;
+}
+int main()
+{
+    int num;
+    cin>>num;
+    int key;
+    for(int i=0;i<num;i++)
+    {
+        cin>>a[i];
+        BSTcreat(a[i]);
+    }
+    cin>>key;
+    if(BSTsearch(key,num)!=-1) cout<<BSTsearch(key,num);
+    else cout<<"NO";
+}
+
