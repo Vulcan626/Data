@@ -4,49 +4,46 @@ using namespace std;
 int d[1001][1001],p[1001][1001];
 int main()
 {
-    int m,n,i,j,k,x1,y1,s1,t1;
-    char x,y,s,t;
-    int z;
+    int m,n;
+    char u,v,s,t;
+    int u1,v1;
+    int s1,t1;
+    int w;
     cin>>m>>n;
     for(int i=1;i<m;i++)
     {
         for(int j=1;j<=m;j++)
         {
-            d[i][j]=INF;
-            p[i][j]=j;
+            dist[i][j]=INF;
+            pre[i][j]=j;
         }
     }
     for(int i=1;i<=n;i++)
     {
-        cin>>x>>y>>z;
-        x1=x-64;
-        y1=y-64;
-        d[x1][y1]=z;
+        cin>>u>>v>>w;
+        u1=u-64;
+        v1=v-64;
+        dist[u1][v1]=w;
     }
     cin>>s>>t;
     s1=s-64;
     t1=t-64;
-    for(k=1;k<=m;k++)
-    {
-        for(i=1;i<=m;i++)
-        {
-            for(j=1;j<=m;j++)
-            {
-                if(d[i][j]>d[i][k]+d[k][j])
-                {
-                    d[i][j]=d[i][k]+d[k][j];
-                    p[i][j]=p[i][k];
+    for(k=1;k<=m;k++){
+        for(i=1;i<=m;i++){
+            for(j=1;j<=m;j++){
+                if(dist[i][j]>dist[i][k]+dist[k][j]){
+                    dist[i][j]=dist[i][k]+dist[k][j];
+                    pre[i][j]=pre[i][k];
                 }
             }
         }
     }
-    cout<<d[s1][t1];
+    cout<<dist[s1][t1];
     cout<<s<<" ";
-    int v=p[s1][t1];
-    while(v!=t1)
-    {
+    int vec=pre[s1][t1];
+    while(vec!=t1){
         cout<<char(v+64)<<" ";
-        v=p[v][t1];
+        vec=p[v][t1];
     }
     cout<<t;
 }
