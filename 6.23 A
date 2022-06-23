@@ -7,16 +7,23 @@ int BSTcount(int *a,int key,int n)
     int l=0,middle,r=n-1;
     while(l<=r)
     {
-        count++;
         middle=(l+r)/2;
-        if(key>a[middle])
+        if(key>a[middle]){
             l=middle+1;
+            if(l!=r) count++;
+        }
         else if(key<a[middle])
+        {
             r=middle-1;
+            if(l!=r) count++;
+        }
         else
+        {
+            count++;
             return count;
+        }
     }
-    return -100;
+    return -1;
 }
 int main()
 {
@@ -29,7 +36,7 @@ int main()
     }
     int Key=0;
     cin>>Key;
-    if(BSTcount(a,Key,num)==-100)
+    if(BSTcount(a,Key,num)==-1)
         cout<<"NO";
     else
         cout<<BSTcount(a,Key,num);
