@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 #define INF 0x3f3f3f3f
-int d[1001][1001],p[1001][1001];
+int dist[1001][1001],pre[1001][1001];
 int main()
 {
     int m,n;
@@ -43,7 +43,7 @@ int main()
     int vec=pre[s1][t1];
     while(vec!=t1){
         cout<<char(v+64)<<" ";
-        vec=p[v][t1];
+        vec=pre[v][t1];
     }
     cout<<t;
 }
